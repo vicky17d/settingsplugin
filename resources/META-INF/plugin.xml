@@ -1,12 +1,11 @@
 <idea-plugin version="2">
-  <id>com.your.company.unique.plugin.id</id>
-  <name>Plugin display name here</name>
+  <id>com.guidewire.cloudsettings</id>
+  <name>CloudSettings</name>
   <version>1.0</version>
   <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Save and get com.blah.settings from cloud
     ]]></description>
 
   <change-notes><![CDATA[
@@ -25,11 +24,21 @@
   -->
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+    <applicationConfigurable groupId="others" instance="com.blah.controller.application.CloudConfiguration"/>
+    <applicationService serviceImplementation="com.blah.controller.application.CloudApplicationSettings"/>
+
   </extensions>
 
   <actions>
     <!-- Add your actions here -->
+    <action id="cloudSettings.ReadFromCloudSettings" class="com.blah.controller.actions.ReadFromCloudFile" text="Read from Cloud Settings"
+            description="blah tst" icon="/images/read.png">
+      <add-to-group group-id="MainToolBar" anchor="after" relative-to-action="HelpTopics"/>
+    </action>
+    <action id="cloudSettings.WriteToCloudSettings" class="com.blah.controller.actions.WriteToCloudFile" text="Write to Cloud Settings"
+            description="writes com.blah.settings to cloud file" icon="/images/write.png">
+      <add-to-group group-id="MainToolBar" anchor="after" relative-to-action="cloudSettings.ReadFromCloudSettings"/>
+    </action>
   </actions>
 
 </idea-plugin>
